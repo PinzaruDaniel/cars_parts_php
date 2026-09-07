@@ -2,10 +2,9 @@
 
 namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class ProjectControllerTest extends TestCase
 {
     public function test_project_presentation_is_displayed(): void
     {
@@ -22,6 +21,19 @@ class ExampleTest extends TestCase
             'Categorie',
             'Client',
             'Comandă',
+            'Entitatea principală: Piesă auto',
+            'ID',
+            'Plăcuțe de frână față',
+            'Cod',
+            'BP-BRE-001',
+            'Sistem de frânare',
+            'Brembo',
+            '849,99 MDL',
+            '12 bucăți',
+            'Disponibilă',
+            'Da',
+            'Pragul stocului redus:',
+            '5 bucăți',
             'v0.0.1',
         ]);
     }
