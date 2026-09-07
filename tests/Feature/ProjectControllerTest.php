@@ -43,7 +43,16 @@ class ProjectControllerTest extends TestCase
             '764,99 MDL',
             'Valoarea stocului după reducere:',
             '9 179,89 MDL',
-            'v0.0.1',
+            'Scenarii de testare',
+            'Compararea rezultatelor obținute cu trei seturi de date',
+            'Filtru de ulei',
+            'OF-MAN-002',
+            'Kit ambreiaj',
+            'CK-LUK-003',
+            'Compararea și documentarea rezultatelor',
+            'Cea mai mare valoare a stocului după reducere aparține piesei',
+            'Cea mai mică valoare aparține piesei',
+            'v0.0.2',
         ]);
     }
 }

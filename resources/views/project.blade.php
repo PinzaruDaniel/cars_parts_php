@@ -84,6 +84,51 @@
             <p><strong>Valoarea stocului după
                     reducere:</strong> {{ number_format($stockValueAfterDiscount, 2, ',', ' ') }} MDL</p>
         </section>
+
+        <section>
+            <h2>Scenarii de testare</h2>
+            <table>
+                <caption>Compararea rezultatelor obținute cu trei seturi de date</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Piesă</th>
+                        <th scope="col">Preț inițial</th>
+                        <th scope="col">Stoc</th>
+                        <th scope="col">Reducere</th>
+                        <th scope="col">Preț redus</th>
+                        <th scope="col">Valoare stoc inițială</th>
+                        <th scope="col">Valoare stoc redusă</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($testResults as $testResult)
+                        <tr>
+                            <th scope="row">{{ $testResult['carPart']->name }} ({{ $testResult['carPart']->code }})</th>
+                            <td>{{ number_format($testResult['carPart']->price, 2, ',', ' ') }} MDL</td>
+                            <td>{{ $testResult['carPart']->stockQuantity }} bucăți</td>
+                            <td>{{ number_format($testResult['discountAmount'], 2, ',', ' ') }} MDL</td>
+                            <td>{{ number_format($testResult['priceAfterDiscount'], 2, ',', ' ') }} MDL</td>
+                            <td>{{ number_format($testResult['stockValueBeforeDiscount'], 2, ',', ' ') }} MDL</td>
+                            <td>{{ number_format($testResult['stockValueAfterDiscount'], 2, ',', ' ') }} MDL</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            <h3>Compararea și documentarea rezultatelor</h3>
+            <p>
+                Cea mai mare valoare a stocului după reducere aparține piesei
+                <strong>{{ $highestStockValueResult['carPart']->name }}</strong>:
+                {{ number_format($highestStockValueResult['stockValueAfterDiscount'], 2, ',', ' ') }} MDL.
+            </p>
+            <p>
+                Cea mai mică valoare aparține piesei
+                <strong>{{ $lowestStockValueResult['carPart']->name }}</strong>:
+                {{ number_format($lowestStockValueResult['stockValueAfterDiscount'], 2, ',', ' ') }} MDL,
+                deoarece stocul este zero.
+            </p>
+            <p>Reducerea standard de {{ number_format($discountPercent) }}% micșorează proporțional prețul și valoarea fiecărui stoc.</p>
+        </section>
     </main>
 
     <footer>

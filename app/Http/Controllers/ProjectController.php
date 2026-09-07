@@ -27,6 +27,53 @@ class ProjectController extends Controller
             stockQuantity: 12,
             isAvailable: true,
         );
+        $testCarParts = [
+            $carPart,
+            new CarPart(
+                id: 2,
+                name: 'Filtru de ulei',
+                code: 'OF-MAN-002',
+                category: 'Filtrare',
+                manufacturer: 'MANN-FILTER',
+                price: 250.00,
+                stockQuantity: 5,
+                isAvailable: true,
+            ),
+            new CarPart(
+                id: 3,
+                name: 'Kit ambreiaj',
+                code: 'CK-LUK-003',
+                category: 'Transmisie',
+                manufacturer: 'LuK',
+                price: 1200.00,
+                stockQuantity: 0,
+                isAvailable: false,
+            ),
+        ];
+        $testResults = [];
+
+        foreach ($testCarParts as $testCarPart) {
+            $testResults[] = [
+                'carPart' => $testCarPart,
+                'discountAmount' => $testCarPart->discountAmount(),
+                'priceAfterDiscount' => $testCarPart->priceAfterDiscount(),
+                'stockValueBeforeDiscount' => $testCarPart->stockValueBeforeDiscount(),
+                'stockValueAfterDiscount' => $testCarPart->stockValueAfterDiscount(),
+            ];
+        }
+
+        $highestStockValueResult = $testResults[0];
+        $lowestStockValueResult = $testResults[0];
+
+        foreach ($testResults as $testResult) {
+            if ($testResult['stockValueAfterDiscount'] > $highestStockValueResult['stockValueAfterDiscount']) {
+                $highestStockValueResult = $testResult;
+            }
+
+            if ($testResult['stockValueAfterDiscount'] < $lowestStockValueResult['stockValueAfterDiscount']) {
+                $lowestStockValueResult = $testResult;
+            }
+        }
 
         return view('project', [
             'projectName' => $projectName,
@@ -42,6 +89,9 @@ class ProjectController extends Controller
             'priceAfterDiscount' => $carPart->priceAfterDiscount(),
             'stockValueBeforeDiscount' => $carPart->stockValueBeforeDiscount(),
             'stockValueAfterDiscount' => $carPart->stockValueAfterDiscount(),
+            'testResults' => $testResults,
+            'highestStockValueResult' => $highestStockValueResult,
+            'lowestStockValueResult' => $lowestStockValueResult,
             'version' => self::APP_VERSION,
         ]);
     }
