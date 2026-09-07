@@ -4,7 +4,7 @@ namespace App\Models;
 
 final readonly class CarPart
 {
-    public const LOW_STOCK_THRESHOLD = 5;
+    public const int LOW_STOCK_THRESHOLD = 5;
 
     public function __construct(
         public int $id,

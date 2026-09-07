@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 
 class ProjectController extends Controller
 {
-    public const APP_VERSION = 'v0.0.1';
+    public const string APP_VERSION = 'v0.0.1';
 
     public function index(): View
     {
