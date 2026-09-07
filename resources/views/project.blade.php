@@ -39,6 +39,40 @@
                     @endforeach
                 </ul>
             </section>
+
+            <section>
+                <h2>Entitatea principală: Piesă auto</h2>
+                <dl>
+                    <dt>ID</dt>
+                    <dd>{{ $carPart['id'] }}</dd>
+
+                    <dt>Denumire</dt>
+                    <dd>{{ $carPart['name'] }}</dd>
+
+                    <dt>Cod</dt>
+                    <dd>{{ $carPart['code'] }}</dd>
+
+                    <dt>Categorie</dt>
+                    <dd>{{ $carPart['category'] }}</dd>
+
+                    <dt>Producător</dt>
+                    <dd>{{ $carPart['manufacturer'] }}</dd>
+
+                    <dt>Preț</dt>
+                    <dd>{{ number_format($carPart['price'], 2, ',', ' ') }} MDL</dd>
+
+                    <dt>Cantitate în stoc</dt>
+                    <dd>{{ $carPart['stockQuantity'] }} bucăți</dd>
+
+                    <dt>Disponibilă</dt>
+                    <dd>{{ $carPart['isAvailable'] ? 'Da' : 'Nu' }}</dd>
+                </dl>
+            </section>
+
+            <section>
+                <h2>Constantele aplicației</h2>
+                <p><strong>Pragul stocului redus:</strong> {{ $lowStockThreshold }} bucăți</p>
+            </section>
         </main>
 
         <footer>
