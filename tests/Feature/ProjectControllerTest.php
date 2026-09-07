@@ -34,6 +34,15 @@ class ProjectControllerTest extends TestCase
             'Da',
             'Pragul stocului redus:',
             '5 bucăți',
+            'Reducerea standard:',
+            '10%',
+            'Calcule pentru piesă',
+            'Valoarea reducerii:',
+            '85,00 MDL',
+            'Preț după reducere:',
+            '764,99 MDL',
+            'Valoarea stocului după reducere:',
+            '9 179,89 MDL',
             'v0.0.1',
         ]);
     }

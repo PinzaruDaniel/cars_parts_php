@@ -37,6 +37,11 @@ class ProjectController extends Controller
             'entities' => $entities,
             'carPart' => $carPart,
             'lowStockThreshold' => CarPart::LOW_STOCK_THRESHOLD,
+            'discountPercent' => CarPart::DISCOUNT_PERCENT,
+            'discountAmount' => $carPart->discountAmount(),
+            'priceAfterDiscount' => $carPart->priceAfterDiscount(),
+            'stockValueBeforeDiscount' => $carPart->stockValueBeforeDiscount(),
+            'stockValueAfterDiscount' => $carPart->stockValueAfterDiscount(),
             'version' => self::APP_VERSION,
         ]);
     }
