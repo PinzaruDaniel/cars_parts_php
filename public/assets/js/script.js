@@ -33,6 +33,41 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    const imageModal = document.querySelector("[data-image-modal]");
+    const modalImage = imageModal?.querySelector("[data-image-modal-content]");
+    const closeImageModalButton = imageModal?.querySelector("[data-image-modal-close]");
+
+    const closeImageModal = () => {
+        imageModal?.close();
+        body.classList.remove("image-modal-is-open");
+    };
+
+    document.querySelectorAll("[data-image-preview]").forEach((previewButton) => {
+        previewButton.addEventListener("click", () => {
+            const sourceImage = previewButton.querySelector("img");
+
+            if (!imageModal || !modalImage || !sourceImage) {
+                return;
+            }
+
+            modalImage.src = sourceImage.currentSrc || sourceImage.src;
+            modalImage.alt = sourceImage.alt;
+            body.classList.add("image-modal-is-open");
+            imageModal.showModal();
+        });
+    });
+
+    closeImageModalButton?.addEventListener("click", closeImageModal);
+    imageModal?.addEventListener("click", (event) => {
+        if (event.target === imageModal) {
+            closeImageModal();
+        }
+    });
+
+    imageModal?.addEventListener("close", () => {
+        body.classList.remove("image-modal-is-open");
+    });
+
     const carousel = document.querySelector("[data-carousel]");
 
     if (!carousel) {

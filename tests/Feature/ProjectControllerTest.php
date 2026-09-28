@@ -44,6 +44,9 @@ class ProjectControllerTest extends TestCase
             'data-carousel-dot="0"',
             'data-carousel-dot="1"',
             'data-carousel-dot="2"',
+            'data-image-preview',
+            'data-image-modal',
+            'data-image-modal-close',
         ], false);
 
         $this->assertFileExists(public_path('assets/images/brakes.png'));

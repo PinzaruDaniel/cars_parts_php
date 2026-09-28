@@ -4,7 +4,10 @@
     <section class="carousel" aria-label="Categorii recomandate" data-carousel>
         <div class="carousel-track">
             <article class="carousel-slide is-active" aria-hidden="false" data-carousel-slide>
-                <img src="{{ asset('assets/images/brakes.png') }}" alt="Componente pentru sistemul de frânare">
+                <button class="carousel-image-button" type="button" aria-label="Mărește imaginea: Componente pentru sistemul de frânare" data-image-preview>
+                    <img src="{{ asset('assets/images/brakes.png') }}" alt="Componente pentru sistemul de frânare">
+                    <span class="carousel-zoom-hint"><x-heroicon-o-magnifying-glass-plus aria-hidden="true" />Mărește</span>
+                </button>
                 <div class="carousel-content">
                     <span class="eyebrow">Siguranță la fiecare drum</span>
                     <h1>Sisteme de frânare</h1>
@@ -14,7 +17,10 @@
             </article>
 
             <article class="carousel-slide" aria-hidden="true" data-carousel-slide>
-                <img src="{{ asset('assets/images/maintenance.png') }}" alt="Consumabile pentru mentenanța motorului">
+                <button class="carousel-image-button" type="button" aria-label="Mărește imaginea: Consumabile pentru mentenanța motorului" data-image-preview>
+                    <img src="{{ asset('assets/images/maintenance.png') }}" alt="Consumabile pentru mentenanța motorului">
+                    <span class="carousel-zoom-hint"><x-heroicon-o-magnifying-glass-plus aria-hidden="true" />Mărește</span>
+                </button>
                 <div class="carousel-content">
                     <span class="eyebrow">Întreținere corectă</span>
                     <h2>Motor și consumabile</h2>
@@ -24,7 +30,10 @@
             </article>
 
             <article class="carousel-slide" aria-hidden="true" data-carousel-slide>
-                <img src="{{ asset('assets/images/drivetrain.png') }}" alt="Componente de transmisie și suspensie">
+                <button class="carousel-image-button" type="button" aria-label="Mărește imaginea: Componente de transmisie și suspensie" data-image-preview>
+                    <img src="{{ asset('assets/images/drivetrain.png') }}" alt="Componente de transmisie și suspensie">
+                    <span class="carousel-zoom-hint"><x-heroicon-o-magnifying-glass-plus aria-hidden="true" />Mărește</span>
+                </button>
                 <div class="carousel-content">
                     <span class="eyebrow">Control și performanță</span>
                     <h2>Transmisie și suspensie</h2>
@@ -47,6 +56,18 @@
             <button class="carousel-dot" type="button" aria-label="Imaginea 3" aria-current="false" data-carousel-dot="2"></button>
         </div>
     </section>
+
+    <dialog class="image-modal" aria-labelledby="image-modal-title" data-image-modal>
+        <div class="image-modal-panel">
+            <div class="image-modal-header">
+                <h2 id="image-modal-title">Previzualizare imagine</h2>
+                <button class="icon-button" type="button" aria-label="Închide imaginea" data-image-modal-close>
+                    <x-heroicon-o-x-mark class="ui-icon" aria-hidden="true" />
+                </button>
+            </div>
+            <img src="" alt="" data-image-modal-content>
+        </div>
+    </dialog>
 
     <div class="content-container">
         <section class="page-section intro-grid">
