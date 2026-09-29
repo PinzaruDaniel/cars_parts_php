@@ -120,7 +120,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * @param  array<int, CarPart>  $carParts
+     * @param array<int, CarPart> $carParts
      * @return array<int, array{carPart: CarPart, discountAmount: float, priceAfterDiscount: float, stockValueBeforeDiscount: float, stockValueAfterDiscount: float}>
      */
     private function testResults(array $carParts): array

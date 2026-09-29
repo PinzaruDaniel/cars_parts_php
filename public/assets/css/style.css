@@ -30,9 +30,8 @@ body {
     min-width: 320px;
     min-height: 100vh;
     margin: 0;
-    background:
-        radial-gradient(circle at 85% 0%, rgba(249, 115, 22, 0.1), transparent 26rem),
-        var(--background);
+    background: radial-gradient(circle at 85% 0%, rgba(249, 115, 22, 0.1), transparent 26rem),
+    var(--background);
     color: var(--text);
     line-height: 1.6;
 }
@@ -311,9 +310,8 @@ body.menu-is-open .side-menu {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(90deg, rgba(6, 9, 13, 0.94) 0%, rgba(6, 9, 13, 0.58) 46%, rgba(6, 9, 13, 0.12) 78%),
-        linear-gradient(0deg, rgba(6, 9, 13, 0.64), transparent 48%);
+    background: linear-gradient(90deg, rgba(6, 9, 13, 0.94) 0%, rgba(6, 9, 13, 0.58) 46%, rgba(6, 9, 13, 0.12) 78%),
+    linear-gradient(0deg, rgba(6, 9, 13, 0.64), transparent 48%);
     pointer-events: none;
 }
 

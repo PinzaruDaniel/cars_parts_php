@@ -9,16 +9,16 @@
     <script src="{{ asset('assets/js/script.js') }}" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#continut">Sari la conținut</a>
+<a class="skip-link" href="#continut">Sari la conținut</a>
 
-    <div class="site-shell">
-        @include('components.header')
+<div class="site-shell">
+    @include('components.header')
 
-        <main id="continut" class="site-main">
-            @yield('content')
-        </main>
+    <main id="continut" class="site-main">
+        @yield('content')
+    </main>
 
-        @include('components.footer')
-    </div>
+    @include('components.footer')
+</div>
 </body>
 </html>

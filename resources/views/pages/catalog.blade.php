@@ -13,7 +13,8 @@
                 <article class="product-card">
                     <div class="product-card-topline">
                         <span>{{ $carPart->code }}</span>
-                        <span class="status-dot {{ $carPart->isAvailable ? 'is-available' : 'is-unavailable' }}">{{ $carPart->isAvailable ? 'Disponibil' : 'Indisponibil' }}</span>
+                        <span
+                            class="status-dot {{ $carPart->isAvailable ? 'is-available' : 'is-unavailable' }}">{{ $carPart->isAvailable ? 'Disponibil' : 'Indisponibil' }}</span>
                     </div>
                     <h2>{{ $carPart->name }}</h2>
                     <p>{{ $carPart->category }} · {{ $carPart->manufacturer }}</p>
