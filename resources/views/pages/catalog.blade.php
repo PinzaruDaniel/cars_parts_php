@@ -7,9 +7,13 @@
             <h1>Catalog de piese auto</h1>
             <p>O selecție demonstrativă de produse pentru principalele sisteme ale automobilului.</p>
         </header>
-
+        <form method="GET" action="{{route('project.catalog')}}">
+            <label for="search">Denumirea sau codul piesei</label>
+            <input id="search" name="q" value="{{ $search}}">
+            <button type="submit">Caută</button>
+        </form>
         <section class="product-grid" aria-label="Catalog">
-            @foreach ($carParts as $carPart)
+            @forelse($carParts as $carPart)
                 <article class="product-card">
                     <div class="product-card-topline">
                         <span>{{ $carPart->code }}</span>
@@ -23,7 +27,9 @@
                         <span>Stoc: {{ $carPart->stockQuantity }}</span>
                     </div>
                 </article>
-            @endforeach
+            @empty
+                <p>Nu au fost gasite piese pentru "{{ $search }}}".</p>
+            @endforelse
         </section>
     </div>
 @endsection

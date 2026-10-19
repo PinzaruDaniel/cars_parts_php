@@ -7,6 +7,49 @@
             <h1>Contact</h1>
             <p>Contactează magazinul pentru informații despre produse și disponibilitate.</p>
         </header>
+        @if(in_array($role, ['vizitator', 'administrator'], true))
+
+            <form class="contact-form" method="POST" action="{{route('project.contact.submit')}}" novalidate>
+                @csrf
+                <div class="contact-field">
+                    <label for="name">Name</label>
+                    <div class="contact-field-control">
+                        <input id="name" name="name" value="{{ $formData['name'] }}"
+                               aria-invalid="{{ isset($formErrors['name']) ? 'true' : 'false' }}"
+                               @if (isset($formErrors['name'])) aria-describedby="name-error" @endif>
+                        @if (isset($formErrors['name']))
+                            <p id="name-error" class="contact-field-error" role="alert">{{ $formErrors['name'] }}</p>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="contact-field">
+                    <label for="email">Email</label>
+                    <div class="contact-field-control">
+                        <input id="email" name="email" value="{{ $formData['email'] }}"
+                               aria-invalid="{{ isset($formErrors['email']) ? 'true' : 'false' }}"
+                               @if (isset($formErrors['email'])) aria-describedby="email-error" @endif>
+                        @if (isset($formErrors['email']))
+                            <p id="email-error" class="contact-field-error" role="alert">{{ $formErrors['email'] }}</p>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="contact-field">
+                    <label for="message">Mesa</label>
+                    <div class="contact-field-control">
+                        <textarea id="message" name="message"
+                                  aria-invalid="{{ isset($formErrors['message']) ? 'true' : 'false' }}"
+                                  @if (isset($formErrors['message'])) aria-describedby="message-error" @endif>{{ $formData['message'] }}</textarea>
+                        @if (isset($formErrors['message']))
+                            <p id="message-error" class="contact-field-error" role="alert">{{ $formErrors['message'] }}</p>
+                        @endif
+                    </div>
+                </div>
+                <button class="button button-primary" type="submit">Trimite solicitarea</button>
+            </form>
+
+        @endif
         <section class="contact-grid" aria-label="Date de contact">
             <article class="info-card">
                 <x-heroicon-o-clock class="card-icon" aria-hidden="true"/>
@@ -22,4 +65,10 @@
                 <p><a href="mailto:contact@carparts.local">contact@carparts.local</a></p></article>
         </section>
     </div>
+    @if ($successMessage !== null)
+        <p>{{ $successMessage }}</p>
+        <p>Nume: {{ $formData['name'] }}</p>
+        <p>E-mail: {{ $formData['email'] }}</p>
+        <p>Mesaj: {{ $formData['message'] }}</p>
+    @endif
 @endsection

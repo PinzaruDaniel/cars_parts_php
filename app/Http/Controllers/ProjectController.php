@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 class ProjectController extends Controller
 {
     public const string APP_VERSION = '0.1.0';
+    public const string DEMO_ROLE = 'vizitator';
 
     public function index(): View
     {
@@ -45,8 +46,16 @@ class ProjectController extends Controller
 
     public function catalog(): View
     {
+        $searchInput = $_GET['q'] ?? '';
+        $search = is_string($searchInput) ? trim($searchInput) : '';
+        $carParts = $this->carParts();
+        if ($search !== '') {
+            $carParts = array_values(array_filter($carParts, fn(CarPart $carPart): bool => mb_stripos($carPart->name, $search) !== false || mb_stripos($carPart->code, $search) !== false
+            ));
+        }
         return view('pages.catalog', array_merge($this->commonViewData('Catalog'), [
-            'carParts' => $this->carParts(),
+            'carParts' => $carParts,
+            'search' => $search,
         ]));
     }
 
@@ -57,12 +66,28 @@ class ProjectController extends Controller
 
     public function contact(): View
     {
-        return view('pages.contact', $this->commonViewData('Contact'));
+        return view('pages.contact', array_merge($this->commonViewData('Contact'), [
+            'formData' => [
+                'name' => '',
+                'email' => '',
+                'message' => '',
+            ],
+            'formErrors' => [],
+            'successMessage' => null,
+        ]));
     }
 
     public function login(): View
     {
         return view('pages.login', $this->commonViewData('Autentificare'));
+    }
+
+    public function administration(): View
+    {
+        if (!in_array(self::DEMO_ROLE, ['operator', 'administrator'], true)) {
+            abort(403, 'Nu ai acces la aceasta pagina');
+        }
+        return view('pages.administration', array_merge($this->commonViewData('Administrare'), ['carParts' => $this->carParts()]));
     }
 
     /**
@@ -77,6 +102,7 @@ class ProjectController extends Controller
             'group' => 'PAPP-231',
             'description' => 'Aplicație web pentru administrarea unui magazin de piese auto și preluarea datelor introduse de utilizatori prin formulare.',
             'version' => self::APP_VERSION,
+            'role' => self::DEMO_ROLE,
         ];
     }
 
@@ -138,5 +164,38 @@ class ProjectController extends Controller
         }
 
         return $testResults;
+    }
+
+    public function submitContact()
+    {
+        if (!in_array(self::DEMO_ROLE, ['vizitator', 'administrator'], true)) {
+            abort(403, 'Nu ai acces la aceasta pagina');
+        }
+        $formData = [];
+        $formErrors = [];
+        foreach (['name', 'email', 'message'] as $field) {
+            $value = $_POST[$field] ?? '';
+            $formData[$field] = is_string($value) ? trim($value) : $value;
+        }
+        if ($formData['name'] === '') {
+            $formErrors['name'] = 'Completeaza numele';
+        }
+        if ($formData['email'] === '') {
+            $formErrors['email'] = 'Completeaza adresa email';
+        } elseif (!filter_var($formData['email'], FILTER_VALIDATE_EMAIL)) {
+            $formErrors['email'] = 'Email invalid';
+        }
+        if ($formData['message'] === '') {
+            $formErrors['message'] = 'Completeaza mesajul';
+        }
+        $successMessage = $formErrors == [] ? 'Solicitarea a fost prelucrata' : null;
+        return view('pages.contact', array_merge(
+            $this->commonViewData('Contact'),
+            [
+                'formData' => $formData,
+                'formErrors' => $formErrors,
+                'successMessage' => $successMessage,
+            ],
+        ));
     }
 }

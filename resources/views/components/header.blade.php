@@ -29,6 +29,13 @@
            href="{{ route('project.index') }}">
             <x-heroicon-o-home class="menu-icon" aria-hidden="true"/>
             Acasă</a>
+        @if($role === ['operator', 'administrator'] )
+            {
+            <a class="menu-link" {{ request()-> routeIs('project.administration')? 'is-active' : '' }}
+            href="{{route('project.administration')}}"
+            >Administrare</a>
+            }
+        @endif
         <a class="menu-link {{ request()->routeIs('project.catalog') ? 'is-active' : '' }}"
            href="{{ route('project.catalog') }}">
             <x-heroicon-o-shopping-cart class="menu-icon" aria-hidden="true"/>
