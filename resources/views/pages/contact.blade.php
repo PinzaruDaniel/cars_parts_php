@@ -7,8 +7,7 @@
             <h1>Contact</h1>
             <p>Contactează magazinul pentru informații despre produse și disponibilitate.</p>
         </header>
-        @if(in_array($role, ['vizitator', 'administrator'], true))
-
+        @if ($role->canSubmitContact())
             <form class="contact-form" method="POST" action="{{route('project.contact.submit')}}" novalidate>
                 @csrf
                 <div class="contact-field">
@@ -42,7 +41,8 @@
                                   aria-invalid="{{ isset($formErrors['message']) ? 'true' : 'false' }}"
                                   @if (isset($formErrors['message'])) aria-describedby="message-error" @endif>{{ $formData['message'] }}</textarea>
                         @if (isset($formErrors['message']))
-                            <p id="message-error" class="contact-field-error" role="alert">{{ $formErrors['message'] }}</p>
+                            <p id="message-error" class="contact-field-error"
+                               role="alert">{{ $formErrors['message'] }}</p>
                         @endif
                     </div>
                 </div>
