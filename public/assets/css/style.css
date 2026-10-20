@@ -764,6 +764,65 @@ tbody th small {
     margin-bottom: 1rem;
 }
 
+.catalog-search {
+    display: grid;
+    gap: 0.6rem;
+    max-width: 48rem;
+    margin-bottom: 2rem;
+}
+
+.catalog-search label {
+    font-weight: 700;
+}
+
+.catalog-search-controls {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.catalog-search-input {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    min-width: 0;
+    padding-inline: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+    background: var(--surface);
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.catalog-search-input:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+}
+
+.catalog-search-input .ui-icon {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--muted);
+}
+
+.catalog-search input {
+    width: 100%;
+    min-width: 0;
+    min-height: 3rem;
+    padding: 0.75rem;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: var(--text);
+}
+
+.catalog-search input::placeholder {
+    color: var(--muted);
+}
+
+.catalog-search-controls .button {
+    flex-shrink: 0;
+}
+
 .contact-form {
     display: grid;
     gap: 0.75rem;
@@ -1201,6 +1260,10 @@ tbody th small {
 }
 
 @media (max-width: 700px) {
+    .catalog-search-controls {
+        flex-direction: column;
+    }
+
     .role-switcher-header,
     .role-switcher-footer {
         flex-direction: column;
