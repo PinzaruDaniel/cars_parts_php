@@ -7,12 +7,14 @@
             <h1>Catalog de piese auto</h1>
             <p>O selecție demonstrativă de produse pentru principalele sisteme ale automobilului.</p>
         </header>
-        <form class="catalog-search" method="GET" action="{{ route('project.catalog') }}" role="search" aria-label="Căutare piese auto">
+        <form class="catalog-search" method="GET" action="{{ route('project.catalog') }}" role="search"
+              aria-label="Căutare piese auto">
             <label for="search">Denumirea sau codul piesei</label>
             <div class="catalog-search-controls">
                 <div class="catalog-search-input">
-                    <x-heroicon-o-magnifying-glass class="ui-icon" aria-hidden="true" />
-                    <input id="search" type="search" name="q" value="{{ $search }}" placeholder="Ex.: filtru de ulei sau BP-BRE-001">
+                    <x-heroicon-o-magnifying-glass class="ui-icon" aria-hidden="true"/>
+                    <input id="search" type="search" name="q" value="{{ $search }}"
+                           placeholder="Ex.: filtru de ulei sau BP-BRE-001">
                 </div>
                 <button class="button button-primary" type="submit">Caută</button>
             </div>
